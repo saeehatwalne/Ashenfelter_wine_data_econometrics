@@ -1,0 +1,1136 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/saeehatwalne/Desktop/APU 2023-25/Econometrics_STATA/assignment2/metrics_assign2_Saee_Hatwalne.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}19 Feb 2024, 21:26:40
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/ff/znt1tmf14sq5426f5t99j_s00000gn/T//SD32815.000000"
+{txt}
+{com}. log on
+{txt}(log already on)
+
+{com}. import delimited "wine.csv"
+{res}{txt}(encoding automatically selected: ISO-8859-1)
+{text}(8 vars, 27 obs)
+
+{com}. br
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/ff/znt1tmf14sq5426f5t99j_s00000gn/T//SD32815.000000"
+{txt}
+{com}. //Q1. Suppose we wish to predict the natural log of the price of wine. Which regressors predict this variable best?
+. //(a) Explore graphically
+. 
+. *just to summarize the basic descriptive statistics of all variables
+. summarize year price lnprice winterrain harvestrain agst age francepop, detail
+
+                            {txt}year
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}     1952           1952
+{txt} 5%    {res}     1953           1953
+{txt}10%    {res}     1955           1955       {txt}Obs         {res}         27
+{txt}25%    {res}     1960           1957       {txt}Sum of wgt. {res}         27
+
+{txt}50%    {res}     1967                      {txt}Mean          {res} 1966.815
+                        {txt}Largest       Std. dev.     {res} 8.246384
+{txt}75%    {res}     1974           1977
+{txt}90%    {res}     1978           1978       {txt}Variance      {res} 68.00285
+{txt}95%    {res}     1979           1979       {txt}Skewness      {res}-.1124268
+{txt}99%    {res}     1980           1980       {txt}Kurtosis      {res} 1.924545
+
+                            {txt}price
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} 495.1693       495.1693
+{txt} 5%    {res} 514.6568       514.6568
+{txt}10%    {res} 518.9461       518.9461       {txt}Obs         {res}         27
+{txt}25%    {res} 663.7463       522.5391       {txt}Sum of wgt. {res}         27
+
+{txt}50%    {res} 1079.766                      {txt}Mean          {res}   1405.8
+                        {txt}Largest       Std. dev.     {res} 1027.226
+{txt}75%    {res} 1799.025       2308.377
+{txt}90%    {res} 3100.442       3100.442       {txt}Variance      {res}  1055194
+{txt}95%    {res} 3215.377       3215.377       {txt}Skewness      {res} 1.758841
+{txt}99%    {res} 4883.903       4883.903       {txt}Kurtosis      {res} 6.136918
+
+                           {txt}lnprice
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}   6.2049         6.2049
+{txt} 5%    {res}   6.2435         6.2435
+{txt}10%    {res}   6.2518         6.2518       {txt}Obs         {res}         27
+{txt}25%    {res}   6.4979         6.2587       {txt}Sum of wgt. {res}         27
+
+{txt}50%    {res}   6.9845                      {txt}Mean          {res} 7.041948
+                        {txt}Largest       Std. dev.     {res}   .63459
+{txt}75%    {res}    7.495         7.7443
+{txt}90%    {res}   8.0393         8.0393       {txt}Variance      {res} .4027044
+{txt}95%    {res}   8.0757         8.0757       {txt}Skewness      {res} .4371297
+{txt}99%    {res}   8.4937         8.4937       {txt}Kurtosis      {res} 2.355265
+
+                         {txt}winterrain
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}      376            376
+{txt} 5%    {res}      402            402
+{txt}10%    {res}      418            418       {txt}Obs         {res}         27
+{txt}25%    {res}      536            420       {txt}Sum of wgt. {res}         27
+
+{txt}50%    {res}      600                      {txt}Mean          {res} 608.4074
+                        {txt}Largest       Std. dev.     {res}  129.035
+{txt}75%    {res}      714            763
+{txt}90%    {res}      819            819       {txt}Variance      {res} 16650.02
+{txt}95%    {res}      821            821       {txt}Skewness      {res} .0392625
+{txt}99%    {res}      830            830       {txt}Kurtosis      {res} 2.253835
+
+                         {txt}harvestrain
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}       38             38
+{txt} 5%    {res}       51             51
+{txt}10%    {res}       52             52       {txt}Obs         {res}         27
+{txt}25%    {res}       87             74       {txt}Sum of wgt. {res}         27
+
+{txt}50%    {res}      123                      {txt}Mean          {res} 144.8148
+                        {txt}Largest       Std. dev.     {res} 73.06585
+{txt}75%    {res}      187            247
+{txt}90%    {res}      267            267       {txt}Variance      {res} 5338.618
+{txt}95%    {res}      290            290       {txt}Skewness      {res} .6099421
+{txt}99%    {res}      292            292       {txt}Kurtosis      {res} 2.408185
+
+                            {txt}agst
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}  14.9833        14.9833
+{txt} 5%    {res}  15.3667        15.3667
+{txt}10%    {res}  15.5833        15.5833       {txt}Obs         {res}         27
+{txt}25%    {res}  16.1333        15.7167       {txt}Sum of wgt. {res}         27
+
+{txt}50%    {res}  16.4167                      {txt}Mean          {res} 16.47778
+                        {txt}Largest       Std. dev.     {res} .6591894
+{txt}75%    {res}  17.0667        17.2667
+{txt}90%    {res}  17.3333        17.3333       {txt}Variance      {res} .4345307
+{txt}95%    {res}  17.4833        17.4833       {txt}Skewness      {res}-.2347998
+{txt}99%    {res}    17.65          17.65       {txt}Kurtosis      {res} 2.570756
+
+                             {txt}age
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        3              3
+{txt} 5%    {res}        4              4
+{txt}10%    {res}        5              5       {txt}Obs         {res}         27
+{txt}25%    {res}        9              6       {txt}Sum of wgt. {res}         27
+
+{txt}50%    {res}       16                      {txt}Mean          {res} 16.18519
+                        {txt}Largest       Std. dev.     {res} 8.246384
+{txt}75%    {res}       23             26
+{txt}90%    {res}       28             28       {txt}Variance      {res} 68.00285
+{txt}95%    {res}       30             30       {txt}Skewness      {res} .1124268
+{txt}99%    {res}       31             31       {txt}Kurtosis      {res} 1.924545
+
+                          {txt}francepop
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} 43183.57       43183.57
+{txt} 5%    {res} 43495.03       43495.03
+{txt}10%    {res} 44217.86       44217.86       {txt}Obs         {res}         27
+{txt}25%    {res}    46584       45152.25       {txt}Sum of wgt. {res}         27
+
+{txt}50%    {res} 50650.41                      {txt}Mean          {res} 50085.44
+                        {txt}Largest       Std. dev.     {res} 3792.999
+{txt}75%    {res} 53689.61       54378.36
+{txt}90%    {res} 54602.19       54602.19       {txt}Variance      {res} 1.44e+07
+{txt}95%    {res} 54835.83       54835.83       {txt}Skewness      {res}-.3652364
+{txt}99%    {res} 55110.23       55110.23       {txt}Kurtosis      {res} 1.852555
+{txt}
+{com}. 
+. *focusing on price and lnprice variables
+. histogram price, title("Histogram of price") name (price_hist, replace)
+{txt}(bin={res}5{txt}, start={res}495.16934{txt}, width={res}877.7468{txt})
+{res}{txt}
+{com}. graph save price_hist, replace
+{res}{txt}file {bf:price_hist.gph} saved
+
+{com}. graph export price_hist.png, replace //histogram to get the overall distribution
+{txt}{p 0 4 2}
+file {bf}
+/Users/saeehatwalne/Desktop/APU 2023-25/Econometrics_STATA/assignment2/price_hist.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. graph box price, name(box_price, replace) title("Box Plot of Price")
+{res}{txt}
+{com}. graph save box_price, replace
+{res}{txt}file {bf:box_price.gph} saved
+
+{com}. graph export box_price.png, replace //boxplot to see outliers and quartiles
+{txt}{p 0 4 2}
+file {bf}
+/Users/saeehatwalne/Desktop/APU 2023-25/Econometrics_STATA/assignment2/box_price.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. histogram lnprice, title("Histogram of lnprice") name (lnprice_hist, replace)
+{txt}(bin={res}5{txt}, start={res}6.2048998{txt}, width={res}.45776005{txt})
+{res}{txt}
+{com}. graph save lnprice_hist, replace
+{res}{txt}file {bf:lnprice_hist.gph} saved
+
+{com}. graph export lnprice_hist.png, replace //histogram of lnprice
+{txt}{p 0 4 2}
+file {bf}
+/Users/saeehatwalne/Desktop/APU 2023-25/Econometrics_STATA/assignment2/lnprice_hist.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. graph box lnprice, name(box_lnprice, replace) title("Box Plot of LnPrice") 
+{res}{txt}
+{com}. graph save box_lnprice, replace
+{res}{txt}file {bf:box_lnprice.gph} saved
+
+{com}. graph export box_lnprice.png, replace //boxplot
+{txt}{p 0 4 2}
+file {bf}
+/Users/saeehatwalne/Desktop/APU 2023-25/Econometrics_STATA/assignment2/box_lnprice.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. 
+. *histogram of other variables
+. histogram winterrain, title("Histogram of winterrain") kdensity name(winterrain_hist, replace)
+{txt}(bin={res}5{txt}, start={res}376{txt}, width={res}90.8{txt})
+{res}{txt}
+{com}. histogram agst, title("Histogram of summer temperature") kdensity name(agst_hist, replace)
+{txt}(bin={res}5{txt}, start={res}14.9833{txt}, width={res}.53333988{txt})
+{res}{txt}
+{com}. histogram harvestrain, title("Histogram of harvest rain") kdensity name(harvestrain_hist, replace)
+{txt}(bin={res}5{txt}, start={res}38{txt}, width={res}50.8{txt})
+{res}{txt}
+{com}. histogram age, title("Histogram of age of wine") kdensity name(age_hist, replace)
+{txt}(bin={res}5{txt}, start={res}3{txt}, width={res}5.6{txt})
+{res}{txt}
+{com}. graph combine winterrain_hist agst_hist harvestrain_hist age_hist
+{res}{txt}
+{com}. graph combine winterrain_hist agst_hist harvestrain_hist age_hist, title("Combined Histograms") cols(2)
+{res}{txt}
+{com}. graph save combined_hist , replace
+{res}{txt}file {bf:combined_hist.gph} saved
+
+{com}. graph export combined_hist.png, replace
+{txt}{p 0 4 2}
+file {bf}
+/Users/saeehatwalne/Desktop/APU 2023-25/Econometrics_STATA/assignment2/combined_hist.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/ff/znt1tmf14sq5426f5t99j_s00000gn/T//SD32815.000000"
+{txt}
+{com}. // Q1 (b) Explore correlations. [10]
+. 
+. *making a correlation matrix: price taken as 'price' not 'lnprice'
+. correlate price age winterrain harvestrain agst francepop
+{txt}(obs=27)
+
+             {c |}    price      age winter~n harves~n     agst france~p
+{hline 13}{c +}{hline 54}
+       price {c |}{res}   1.0000
+         {txt}age {c |}{res}   0.4521   1.0000
+  {txt}winterrain {c |}{res}   0.2338  -0.0512   1.0000
+ {txt}harvestrain {c |}{res}  -0.4492   0.0588  -0.2680   1.0000
+        {txt}agst {c |}{res}   0.5889   0.2949  -0.3211  -0.0271   1.0000
+   {txt}francepop {c |}{res}  -0.4728  -0.9923   0.0295  -0.0320  -0.3013   1.0000
+
+{txt}
+{com}. matrix corrmatrix = r(C) 
+{txt}
+{com}. heatplot corrmatrix, title("Correlation matrix")values(format(%4.3f) size(medium)) color(hcl diverging, intensity(.7))
+{res}{txt}
+{com}. *making a correlation matrix: with 'lnprice'
+. correlate lnprice age winterrain harvestrain agst francepop
+{txt}(obs=27)
+
+             {c |}  lnprice      age winter~n harves~n     agst france~p
+{hline 13}{c +}{hline 54}
+     lnprice {c |}{res}   1.0000
+         {txt}age {c |}{res}   0.4604   1.0000
+  {txt}winterrain {c |}{res}   0.1349  -0.0512   1.0000
+ {txt}harvestrain {c |}{res}  -0.5072   0.0588  -0.2680   1.0000
+        {txt}agst {c |}{res}   0.6675   0.2949  -0.3211  -0.0271   1.0000
+   {txt}francepop {c |}{res}  -0.4811  -0.9923   0.0295  -0.0320  -0.3013   1.0000
+
+{txt}
+{com}. matrix corrmatrix = r(C) 
+{txt}
+{com}. heatplot corrmatrix, values(format(%4.3f) size(medium)) color(hcl diverging, intensity(.7))
+{res}{txt}
+{com}. graph save corr_matr, replace
+{res}{txt}file {bf:corr_matr.gph} saved
+
+{com}. graph export corr_matr.png, replace
+{txt}{p 0 4 2}
+file {bf}
+/Users/saeehatwalne/Desktop/APU 2023-25/Econometrics_STATA/assignment2/corr_matr.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. 
+. *observing scatter plots
+. twoway (scatter price age) (lfitci price age, fcolor(grey%20)), ///
+> title("Price vs Age of wine") name(price_age_scatter, replace)
+{p 0 4 2}
+{txt}(note:  named style
+grey not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+grey not found in class
+color,  default attributes used)
+{p_end}
+{res}{txt}
+{com}. twoway (scatter price agst)(lfitci price agst, fcolor(grey%20)), ///
+> title("Price vs Summer Temperature") name(price_agst_scatter, replace)
+{p 0 4 2}
+{txt}(note:  named style
+grey not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+grey not found in class
+color,  default attributes used)
+{p_end}
+{res}{txt}
+{com}. twoway (scatter price winterrain) (lfitci price winterrain, fcolor(grey%20)), ///
+> title("Price vs Winter rain") name(price_winterrain_scatter, replace)
+{p 0 4 2}
+{txt}(note:  named style
+grey not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+grey not found in class
+color,  default attributes used)
+{p_end}
+{res}{txt}
+{com}. twoway (scatter price francepop) (lfitci price francepop, fcolor(grey%20)), ///
+> title("Price vs Population of France") name(price_pop_scatter, replace)
+{p 0 4 2}
+{txt}(note:  named style
+grey not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+grey not found in class
+color,  default attributes used)
+{p_end}
+{res}{txt}
+{com}. twoway (scatter price harvestrain) (lfitci price harvestrain, fcolor(grey%20)), ///
+> title("Price vs Harvest rain") name(price_harvestrain_scatter, replace)
+{p 0 4 2}
+{txt}(note:  named style
+grey not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+grey not found in class
+color,  default attributes used)
+{p_end}
+{res}{txt}
+{com}. graph combine price_age_scatter price_agst_scatter price_winterrain_scatter price_pop_scatter price_harvestrain_scatter, ///
+> title("Combined Scatter Plots") cols(3)
+{p 0 4 2}
+{txt}(note:  named style
+grey not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+grey not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+grey not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+grey not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+grey not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+grey not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+grey not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+grey not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+grey not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+grey not found in class
+color,  default attributes used)
+{p_end}
+{res}{txt}
+{com}. graph save combinedscatter, replace
+{res}{txt}file {bf:combinedscatter.gph} saved
+
+{com}. graph export combinedscatter.png, replace
+{txt}{p 0 4 2}
+file {bf}
+/Users/saeehatwalne/Desktop/APU 2023-25/Econometrics_STATA/assignment2/combinedscatter.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. 
+. 
+. 
+. // Q1 (c) Explore simple regressions. [10]
+. *lnprice on age only
+. regress lnprice age
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}        27
+{txt}{hline 13}{c +}{hline 34}   F(1, 25)        = {res}     6.72
+{txt}       Model {c |} {res} 2.21945762         1  2.21945762   {txt}Prob > F        ={res}    0.0157
+{txt}    Residual {c |} {res} 8.25085743        25  .330034297   {txt}R-squared       ={res}    0.2120
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1805
+{txt}       Total {c |} {res} 10.4703151        26  .402704425   {txt}Root MSE        =   {res} .57449
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     lnprice{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0354302{col 26}{space 2} .0136625{col 37}{space 1}    2.59{col 46}{space 3}0.016{col 54}{space 4} .0072918{col 67}{space 3} .0635686
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 6.468504{col 26}{space 2} .2472283{col 37}{space 1}   26.16{col 46}{space 3}0.000{col 54}{space 4} 5.959328{col 67}{space 3}  6.97768
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. eststo reg01
+{txt}
+{com}. esttab reg01, stats(F rmse rss, star(F))
+{res}
+{txt}{hline 28}
+{txt}                      (1)   
+{txt}                  lnprice   
+{txt}{hline 28}
+{txt}age         {res}       0.0354*  {txt}
+            {res} {ralign 12:{txt:(}2.59{txt:)}}   {txt}
+
+{txt}_cons       {res}        6.469***{txt}
+            {res} {ralign 12:{txt:(}26.16{txt:)}}   {txt}
+{txt}{hline 28}
+{txt}F           {res}        6.725*  {txt}
+{txt}rmse        {res}        0.574   {txt}
+{txt}rss         {res}        8.251   {txt}
+{txt}{hline 28}
+{txt}t statistics in parentheses
+{txt}* p<0.05, ** p<0.01, *** p<0.001
+
+{com}. predict lnpricehat, xb //predicting the yhat values (fitted)
+{txt}
+{com}. predict uhat, residuals //predicting residuals
+{txt}
+{com}. summ uhat //mean of uhats is  8.28e-10  which is very close to zero, as expected through assumptions
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 8}uhat {c |}{res}         27    8.28e-10      .56333  -.8544472   1.245732
+{txt}
+{com}. corr lnpricehat lnprice //correlating fitted values and actual values
+{txt}(obs=27)
+
+             {c |} lnpric~t  lnprice
+{hline 13}{c +}{hline 18}
+  lnpricehat {c |}{res}   1.0000
+     {txt}lnprice {c |}{res}   0.4604   1.0000
+
+{txt}
+{com}. //Interpreting the Rsquare
+. *square of the correlation coefficient of the fitted and actual values
+. *shows the extent to which the model explains the variation in actual dependent variable
+. *which is the R square
+. dis (0.4604)^2 //0.4604 is the correlation coeff between lnpricehat and lnprice
+{res}.21196816
+{txt}
+{com}. *(0.4604)^2 = 0.2119 which is the Rsquare value
+. 
+. *lnprice on agst only
+. regress lnprice agst
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}        27
+{txt}{hline 13}{c +}{hline 34}   F(1, 25)        = {res}    20.09
+{txt}       Model {c |} {res} 4.66546093         1  4.66546093   {txt}Prob > F        ={res}    0.0001
+{txt}    Residual {c |} {res} 5.80485412        25  .232194165   {txt}R-squared       ={res}    0.4456
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.4234
+{txt}       Total {c |} {res} 10.4703151        26  .402704425   {txt}Root MSE        =   {res} .48187
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     lnprice{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}agst {c |}{col 14}{res}{space 2} .6426143{col 26}{space 2} .1433603{col 37}{space 1}    4.48{col 46}{space 3}0.000{col 54}{space 4} .3473583{col 67}{space 3} .9378703
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} -3.54691{col 26}{space 2} 2.364078{col 37}{space 1}   -1.50{col 46}{space 3}0.146{col 54}{space 4}-8.415821{col 67}{space 3} 1.322001
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. eststo reg02
+{txt}
+{com}. esttab reg02, stats(F rmse rss, star(F))
+{res}
+{txt}{hline 28}
+{txt}                      (1)   
+{txt}                  lnprice   
+{txt}{hline 28}
+{txt}agst        {res}        0.643***{txt}
+            {res} {ralign 12:{txt:(}4.48{txt:)}}   {txt}
+
+{txt}_cons       {res}       -3.547   {txt}
+            {res} {ralign 12:{txt:(}-1.50{txt:)}}   {txt}
+{txt}{hline 28}
+{txt}F           {res}        20.09***{txt}
+{txt}rmse        {res}        0.482   {txt}
+{txt}rss         {res}        5.805   {txt}
+{txt}{hline 28}
+{txt}t statistics in parentheses
+{txt}* p<0.05, ** p<0.01, *** p<0.001
+
+{com}. 
+. *lnprice on harvestrain only
+. regress lnprice harvestrain
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}        27
+{txt}{hline 13}{c +}{hline 34}   F(1, 25)        = {res}     8.66
+{txt}       Model {c |} {res} 2.69334462         1  2.69334462   {txt}Prob > F        ={res}    0.0069
+{txt}    Residual {c |} {res} 7.77697043        25  .311078817   {txt}R-squared       ={res}    0.2572
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.2275
+{txt}       Total {c |} {res} 10.4703151        26  .402704425   {txt}Root MSE        =   {res} .55774
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     lnprice{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 1}harvestrain {c |}{col 14}{res}{space 2} -.004405{col 26}{space 2}  .001497{col 37}{space 1}   -2.94{col 46}{space 3}0.007{col 54}{space 4}-.0074882{col 67}{space 3}-.0013218
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 7.679856{col 26}{space 2} .2419112{col 37}{space 1}   31.75{col 46}{space 3}0.000{col 54}{space 4}  7.18163{col 67}{space 3} 8.178081
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. eststo reg03
+{txt}
+{com}. esttab reg03, stats(F rmse rss, star(F))
+{res}
+{txt}{hline 28}
+{txt}                      (1)   
+{txt}                  lnprice   
+{txt}{hline 28}
+{txt}harvestrain {res}     -0.00440** {txt}
+            {res} {ralign 12:{txt:(}-2.94{txt:)}}   {txt}
+
+{txt}_cons       {res}        7.680***{txt}
+            {res} {ralign 12:{txt:(}31.75{txt:)}}   {txt}
+{txt}{hline 28}
+{txt}F           {res}        8.658** {txt}
+{txt}rmse        {res}        0.558   {txt}
+{txt}rss         {res}        7.777   {txt}
+{txt}{hline 28}
+{txt}t statistics in parentheses
+{txt}* p<0.05, ** p<0.01, *** p<0.001
+
+{com}. 
+. *lnprice on winterrain only
+. regress lnprice winterrain
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}        27
+{txt}{hline 13}{c +}{hline 34}   F(1, 25)        = {res}     0.46
+{txt}       Model {c |} {res} .190482429         1  .190482429   {txt}Prob > F        ={res}    0.5024
+{txt}    Residual {c |} {res} 10.2798326        25  .411193305   {txt}R-squared       ={res}    0.0182
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}   -0.0211
+{txt}       Total {c |} {res} 10.4703151        26  .402704425   {txt}Root MSE        =   {res} .64124
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     lnprice{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 2}winterrain {c |}{col 14}{res}{space 2} .0006633{col 26}{space 2} .0009746{col 37}{space 1}    0.68{col 46}{space 3}0.502{col 54}{space 4}-.0013439{col 67}{space 3} .0026706
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}  6.63837{col 26}{space 2} .6056631{col 37}{space 1}   10.96{col 46}{space 3}0.000{col 54}{space 4} 5.390983{col 67}{space 3} 7.885756
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. eststo reg04
+{txt}
+{com}. esttab reg04, stats(F rmse rss, star(F))
+{res}
+{txt}{hline 28}
+{txt}                      (1)   
+{txt}                  lnprice   
+{txt}{hline 28}
+{txt}winterrain  {res}     0.000663   {txt}
+            {res} {ralign 12:{txt:(}0.68{txt:)}}   {txt}
+
+{txt}_cons       {res}        6.638***{txt}
+            {res} {ralign 12:{txt:(}10.96{txt:)}}   {txt}
+{txt}{hline 28}
+{txt}F           {res}        0.463   {txt}
+{txt}rmse        {res}        0.641   {txt}
+{txt}rss         {res}        10.28   {txt}
+{txt}{hline 28}
+{txt}t statistics in parentheses
+{txt}* p<0.05, ** p<0.01, *** p<0.001
+
+{com}. 
+. *lnprice on francepop only
+. regress lnprice francepop
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}        27
+{txt}{hline 13}{c +}{hline 34}   F(1, 25)        = {res}     7.53
+{txt}       Model {c |} {res} 2.42314796         1  2.42314796   {txt}Prob > F        ={res}    0.0111
+{txt}    Residual {c |} {res} 8.04716709        25  .321886683   {txt}R-squared       ={res}    0.2314
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.2007
+{txt}       Total {c |} {res} 10.4703151        26  .402704425   {txt}Root MSE        =   {res} .56735
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     lnprice{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}francepop {c |}{col 14}{res}{space 2}-.0000805{col 26}{space 2} .0000293{col 37}{space 1}   -2.74{col 46}{space 3}0.011{col 54}{space 4}-.0001409{col 67}{space 3}-.0000201
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 11.07313{col 26}{space 2} 1.473295{col 37}{space 1}    7.52{col 46}{space 3}0.000{col 54}{space 4}  8.03882{col 67}{space 3} 14.10743
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. eststo reg05
+{txt}
+{com}. esttab reg05, stats(F rmse rss, star(F))
+{res}
+{txt}{hline 28}
+{txt}                      (1)   
+{txt}                  lnprice   
+{txt}{hline 28}
+{txt}francepop   {res}   -0.0000805*  {txt}
+            {res} {ralign 12:{txt:(}-2.74{txt:)}}   {txt}
+
+{txt}_cons       {res}        11.07***{txt}
+            {res} {ralign 12:{txt:(}7.52{txt:)}}   {txt}
+{txt}{hline 28}
+{txt}F           {res}        7.528*  {txt}
+{txt}rmse        {res}        0.567   {txt}
+{txt}rss         {res}        8.047   {txt}
+{txt}{hline 28}
+{txt}t statistics in parentheses
+{txt}* p<0.05, ** p<0.01, *** p<0.001
+
+{com}. 
+. *combining the SLRs into one table, standard errors in parantheses
+. esttab reg01 reg02 reg03 reg04 reg05 using "regressions_first.tex", r2 ar2 se scalar(rmse) replace
+{res}{txt}(output written to {browse  `"regressions_first.tex"'})
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/ff/znt1tmf14sq5426f5t99j_s00000gn/T//SD32815.000000"
+{txt}
+{com}. 
+. // Q1 (d) Ashenfelter claims that weather is the key determinant of wine prices. 
+. //Replicate Figures 1 and 2 from the paper and explain his arguments. [10]
+. 
+. *Figure 1
+. generate rel_price = .
+{txt}(27 missing values generated)
+
+{com}. replace rel_price = (price/4883.903)*100
+{txt}(27 real changes made)
+
+{com}. generate ln_rel_price = .
+{txt}(27 missing values generated)
+
+{com}. replace ln_rel_price = ln(rel_price)
+{txt}(27 real changes made)
+
+{com}. 
+. twoway (scatter ln_rel_price year) (lfit ln_rel_price year), ///
+>     title("Fig1.: Red Bordeaux Wine Prices, Relative to 1961") ytitle(ln of price) xtitle(Year of Vintage) ///
+>     xscale(range(1950 1980)) xtick(1950(5) 1980) ///
+>     yscale(range(2.3 4.6)) ytick(2.3(0) 4.6) ///
+>     ylabel(2.3 "2.3" 4.6 "4.6") ///
+>         name(scatterfig1, replace) ///
+>     xlabel(1950 "1950" 1955 "1955" 1960 "1960" 1965 "1965" 1970 "1970" 1975 "1975" 1980 "1980")
+{res}{txt}
+{com}.         graph save scatterfig1, replace
+{res}{txt}file {bf:scatterfig1.gph} saved
+
+{com}.         graph export scatterfig1.png, replace
+{txt}{p 0 4 2}
+file {bf}
+/Users/saeehatwalne/Desktop/APU 2023-25/Econometrics_STATA/assignment2/scatterfig1.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. 
+. *Figure 2
+. gen year_last_two_digits = ""
+{txt}(27 missing values generated)
+
+{com}. replace year_last_two_digits = substr(string(year), -2, .)
+{txt}variable {bf}{res}year_last_two_digits{sf}{txt} was {bf}{res}str1{sf}{txt} now {bf}{res}str2{sf}
+{txt}(27 real changes made)
+
+{com}. destring year_last_two_digits, generate(year_last_two_digits_n)
+{txt}year_last_two_digits: all characters numeric; year_last_two_digits_n {res}generated {txt}as {res}byte
+{txt}
+{com}. 
+. gen price_category = . //making price categories to display differently
+{txt}(27 missing values generated)
+
+{com}. replace price_category = 1 if price > 1405.8
+{txt}(10 real changes made)
+
+{com}. replace price_category = 0 if price <= 1405.8
+{txt}(17 real changes made)
+
+{com}. 
+. //Create scatter plot with different marker symbols and invert harvestrain axis
+. scatter harvestrain agst if price_category == 1, xline(16.5) yline(150) mlabel(year_last_two_digits) mcolor(black) msymbol(diamond) ///
+> || scatter harvestrain agst if price_category == 0, mlabel(year_last_two_digits) mcolor(black) msymbol(Sh) ///
+> ytitle(Harvest Rain) xtitle(Summer Temperature)title("Fig. 2. Bordeaux Summer Temperature and Harvest Rain, 1952-1980", size(small)) ///
+> xscale(range(14.5 18.5)) yscale(range(350 0) reverse) ytick(350(50)0) xtick(14.5(0.5)18.5) ///
+> ylabel(0 "0" 50 "50" 100 "100" 150 "150" 200 "200" 250 "250" 300 "300" 350 "350") ///
+> xlabel(14.5 "14.5" 15 "15" 15.5 "15.5" 16 "16" 16.5 "16.5" 17 "17" 17.5 "17.5" 18 "18" 18.5 "18.5") ///
+> legend(order(1 "Above average price" 2 "Below average price") label(1 "Diamond" 2 "Box")) ///
+> name(scatterfig2, replace)
+{res}{txt}
+{com}. graph save scatterfig2, replace
+{res}{txt}file {bf:scatterfig2.gph} saved
+
+{com}. graph export scatterfig2.png, replace
+{txt}{p 0 4 2}
+file {bf}
+/Users/saeehatwalne/Desktop/APU 2023-25/Econometrics_STATA/assignment2/scatterfig2.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}.         
+. 
+{txt}end of do-file
+
+{com}. do "/var/folders/ff/znt1tmf14sq5426f5t99j_s00000gn/T//SD32815.000000"
+{txt}
+{com}. //Q2. Regressions
+. //regression for column1
+. regress lnprice age
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}        27
+{txt}{hline 13}{c +}{hline 34}   F(1, 25)        = {res}     6.72
+{txt}       Model {c |} {res} 2.21945762         1  2.21945762   {txt}Prob > F        ={res}    0.0157
+{txt}    Residual {c |} {res} 8.25085743        25  .330034297   {txt}R-squared       ={res}    0.2120
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1805
+{txt}       Total {c |} {res} 10.4703151        26  .402704425   {txt}Root MSE        =   {res} .57449
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     lnprice{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0354302{col 26}{space 2} .0136625{col 37}{space 1}    2.59{col 46}{space 3}0.016{col 54}{space 4} .0072918{col 67}{space 3} .0635686
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 6.468504{col 26}{space 2} .2472283{col 37}{space 1}   26.16{col 46}{space 3}0.000{col 54}{space 4} 5.959328{col 67}{space 3}  6.97768
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. eststo reg1
+{txt}
+{com}. esttab reg1, stats(F rmse rss, star(F))
+{res}
+{txt}{hline 28}
+{txt}                      (1)   
+{txt}                  lnprice   
+{txt}{hline 28}
+{txt}age         {res}       0.0354*  {txt}
+            {res} {ralign 12:{txt:(}2.59{txt:)}}   {txt}
+
+{txt}_cons       {res}        6.469***{txt}
+            {res} {ralign 12:{txt:(}26.16{txt:)}}   {txt}
+{txt}{hline 28}
+{txt}F           {res}        6.725*  {txt}
+{txt}rmse        {res}        0.574   {txt}
+{txt}rss         {res}        8.251   {txt}
+{txt}{hline 28}
+{txt}t statistics in parentheses
+{txt}* p<0.05, ** p<0.01, *** p<0.001
+
+{com}. 
+. //regression for column2
+. regress lnprice age agst harvestrain winterrain 
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}        27
+{txt}{hline 13}{c +}{hline 34}   F(4, 22)        = {res}    26.39
+{txt}       Model {c |} {res} 8.66451869         4  2.16612967   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 1.80579637        22  .082081653   {txt}R-squared       ={res}    0.8275
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.7962
+{txt}       Total {c |} {res} 10.4703151        26  .402704425   {txt}Root MSE        =   {res}  .2865
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     lnprice{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2}  .023848{col 26}{space 2} .0071667{col 37}{space 1}    3.33{col 46}{space 3}0.003{col 54}{space 4} .0089853{col 67}{space 3} .0387107
+{txt}{space 8}agst {c |}{col 14}{res}{space 2} .6163917{col 26}{space 2} .0951746{col 37}{space 1}    6.48{col 46}{space 3}0.000{col 54}{space 4} .4190116{col 67}{space 3} .8137719
+{txt}{space 1}harvestrain {c |}{col 14}{res}{space 2}-.0038606{col 26}{space 2} .0008075{col 37}{space 1}   -4.78{col 46}{space 3}0.000{col 54}{space 4}-.0055353{col 67}{space 3}-.0021859
+{txt}{space 2}winterrain {c |}{col 14}{res}{space 2} .0011667{col 26}{space 2}  .000482{col 37}{space 1}    2.42{col 46}{space 3}0.024{col 54}{space 4}  .000167{col 67}{space 3} .0021664
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-3.651573{col 26}{space 2} 1.688087{col 37}{space 1}   -2.16{col 46}{space 3}0.042{col 54}{space 4}-7.152452{col 67}{space 3}-.1506944
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. eststo reg2
+{txt}
+{com}. esttab reg2, stats(F rmse rss, star(F)) //F statistic is significant at 0.001 level, 
+{res}
+{txt}{hline 28}
+{txt}                      (1)   
+{txt}                  lnprice   
+{txt}{hline 28}
+{txt}age         {res}       0.0238** {txt}
+            {res} {ralign 12:{txt:(}3.33{txt:)}}   {txt}
+
+{txt}agst        {res}        0.616***{txt}
+            {res} {ralign 12:{txt:(}6.48{txt:)}}   {txt}
+
+{txt}harvestrain {res}     -0.00386***{txt}
+            {res} {ralign 12:{txt:(}-4.78{txt:)}}   {txt}
+
+{txt}winterrain  {res}      0.00117*  {txt}
+            {res} {ralign 12:{txt:(}2.42{txt:)}}   {txt}
+
+{txt}_cons       {res}       -3.652*  {txt}
+            {res} {ralign 12:{txt:(}-2.16{txt:)}}   {txt}
+{txt}{hline 28}
+{txt}F           {res}        26.39***{txt}
+{txt}rmse        {res}        0.286   {txt}
+{txt}rss         {res}        1.806   {txt}
+{txt}{hline 28}
+{txt}t statistics in parentheses
+{txt}* p<0.05, ** p<0.01, *** p<0.001
+
+{com}. //which means that model fits data better than if all coefficients are zero
+. predict lnpricehat2, xb //predicting the yhat values - fitted values from the regression
+{txt}
+{com}. corr lnpricehat2 lnprice //again doing the same correlation as above
+{txt}(obs=27)
+
+             {c |} lnpric~2  lnprice
+{hline 13}{c +}{hline 18}
+ lnpricehat2 {c |}{res}   1.0000
+     {txt}lnprice {c |}{res}   0.9097   1.0000
+
+{txt}
+{com}. dis (0.9097)^2 //0.9097 is the corr coeff between lnpricehat2 and lnprice
+{res}.82755409
+{txt}
+{com}. *the answer displayed is 0.82755, which is same as the Rsquare got from regression output
+. 
+. *trying out the MLR method - regressing with auxilliary equation
+. regress age agst harvestrain winterrain //auxilliary equation of age on other variables
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}        27
+{txt}{hline 13}{c +}{hline 34}   F(3, 23)        = {res}     0.82
+{txt}       Model {c |} {res}  169.93965         3    56.64655   {txt}Prob > F        ={res}    0.4986
+{txt}    Residual {c |} {res} 1598.13442        23  69.4841054   {txt}R-squared       ={res}    0.0961
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}   -0.0218
+{txt}       Total {c |} {res} 1768.07407        26   68.002849   {txt}Root MSE        =   {res} 8.3357
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}         age{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}agst {c |}{col 14}{res}{space 2} 4.022456{col 26}{space 2} 2.639036{col 37}{space 1}    1.52{col 46}{space 3}0.141{col 54}{space 4}-1.436806{col 67}{space 3} 9.481719
+{txt}{space 1}harvestrain {c |}{col 14}{res}{space 2} .0099116{col 26}{space 2}  .023404{col 37}{space 1}    0.42{col 46}{space 3}0.676{col 54}{space 4}-.0385032{col 67}{space 3} .0583265
+{txt}{space 2}winterrain {c |}{col 14}{res}{space 2}  .004832{col 26}{space 2} .0139885{col 37}{space 1}    0.35{col 46}{space 3}0.733{col 54}{space 4}-.0241055{col 67}{space 3} .0337695
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-54.47117{col 26}{space 2} 47.78372{col 37}{space 1}   -1.14{col 46}{space 3}0.266{col 54}{space 4}-153.3193{col 67}{space 3} 44.37698
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. predict resid1, residuals //part of age uncorrelated with other variables
+{txt}
+{com}. regress lnprice resid1 //regressing this part on dependent variable
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}        27
+{txt}{hline 13}{c +}{hline 34}   F(1, 25)        = {res}     2.38
+{txt}       Model {c |} {res} .908903891         1  .908903891   {txt}Prob > F        ={res}    0.1357
+{txt}    Residual {c |} {res} 9.56141116        25  .382456446   {txt}R-squared       ={res}    0.0868
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0503
+{txt}       Total {c |} {res} 10.4703151        26  .402704425   {txt}Root MSE        =   {res} .61843
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     lnprice{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}resid1 {c |}{col 14}{res}{space 2}  .023848{col 26}{space 2} .0154698{col 37}{space 1}    1.54{col 46}{space 3}0.136{col 54}{space 4}-.0080126{col 67}{space 3} .0557086
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 7.041948{col 26}{space 2}  .119017{col 37}{space 1}   59.17{col 46}{space 3}0.000{col 54}{space 4} 6.796828{col 67}{space 3} 7.287068
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. *this should give the same coefficient as simple regression lnprice on age
+. *approximately, same coefficient is obtained
+. 
+. //Q2(a) combining the two columns to disaply the regressions
+. esttab reg1 reg2 using "regressions.tex", r2 ar2 se scalar(rmse) replace
+{res}{txt}(output written to {browse  `"regressions.tex"'})
+
+{com}. 
+. //Q2(b) goodness of fit and lnprice relative to 1961 as dependent variable
+. //goodness of fit of initial two models discussed in the answersheet, and above
+. //now for lnprice relative to 1961 as dependent variable - regressions are:
+. regress ln_rel_price age
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}        27
+{txt}{hline 13}{c +}{hline 34}   F(1, 25)        = {res}     6.72
+{txt}       Model {c |} {res} 2.21945762         1  2.21945762   {txt}Prob > F        ={res}    0.0157
+{txt}    Residual {c |} {res} 8.25085743        25  .330034297   {txt}R-squared       ={res}    0.2120
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1805
+{txt}       Total {c |} {res} 10.4703151        26  .402704425   {txt}Root MSE        =   {res} .57449
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}ln_rel_price{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0354302{col 26}{space 2} .0136625{col 37}{space 1}    2.59{col 46}{space 3}0.016{col 54}{space 4} .0072918{col 67}{space 3} .0635686
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 2.579975{col 26}{space 2} .2472283{col 37}{space 1}   10.44{col 46}{space 3}0.000{col 54}{space 4} 2.070798{col 67}{space 3} 3.089151
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. eststo reg3
+{txt}
+{com}. esttab reg3, stats(F rmse rss, star(F))
+{res}
+{txt}{hline 28}
+{txt}                      (1)   
+{txt}             ln_rel_price   
+{txt}{hline 28}
+{txt}age         {res}       0.0354*  {txt}
+            {res} {ralign 12:{txt:(}2.59{txt:)}}   {txt}
+
+{txt}_cons       {res}        2.580***{txt}
+            {res} {ralign 12:{txt:(}10.44{txt:)}}   {txt}
+{txt}{hline 28}
+{txt}F           {res}        6.725*  {txt}
+{txt}rmse        {res}        0.574   {txt}
+{txt}rss         {res}        8.251   {txt}
+{txt}{hline 28}
+{txt}t statistics in parentheses
+{txt}* p<0.05, ** p<0.01, *** p<0.001
+
+{com}. 
+. regress ln_rel_price age agst harvestrain winterrain
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}        27
+{txt}{hline 13}{c +}{hline 34}   F(4, 22)        = {res}    26.39
+{txt}       Model {c |} {res} 8.66451869         4  2.16612967   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 1.80579637        22  .082081653   {txt}R-squared       ={res}    0.8275
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.7962
+{txt}       Total {c |} {res} 10.4703151        26  .402704425   {txt}Root MSE        =   {res}  .2865
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}ln_rel_price{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2}  .023848{col 26}{space 2} .0071667{col 37}{space 1}    3.33{col 46}{space 3}0.003{col 54}{space 4} .0089853{col 67}{space 3} .0387107
+{txt}{space 8}agst {c |}{col 14}{res}{space 2} .6163917{col 26}{space 2} .0951746{col 37}{space 1}    6.48{col 46}{space 3}0.000{col 54}{space 4} .4190116{col 67}{space 3} .8137719
+{txt}{space 1}harvestrain {c |}{col 14}{res}{space 2}-.0038606{col 26}{space 2} .0008075{col 37}{space 1}   -4.78{col 46}{space 3}0.000{col 54}{space 4}-.0055353{col 67}{space 3}-.0021859
+{txt}{space 2}winterrain {c |}{col 14}{res}{space 2} .0011667{col 26}{space 2}  .000482{col 37}{space 1}    2.42{col 46}{space 3}0.024{col 54}{space 4}  .000167{col 67}{space 3} .0021664
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-7.540103{col 26}{space 2} 1.688087{col 37}{space 1}   -4.47{col 46}{space 3}0.000{col 54}{space 4}-11.04098{col 67}{space 3}-4.039224
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. eststo reg4
+{txt}
+{com}. esttab reg4, stats(F rmse rss, star(F))
+{res}
+{txt}{hline 28}
+{txt}                      (1)   
+{txt}             ln_rel_price   
+{txt}{hline 28}
+{txt}age         {res}       0.0238** {txt}
+            {res} {ralign 12:{txt:(}3.33{txt:)}}   {txt}
+
+{txt}agst        {res}        0.616***{txt}
+            {res} {ralign 12:{txt:(}6.48{txt:)}}   {txt}
+
+{txt}harvestrain {res}     -0.00386***{txt}
+            {res} {ralign 12:{txt:(}-4.78{txt:)}}   {txt}
+
+{txt}winterrain  {res}      0.00117*  {txt}
+            {res} {ralign 12:{txt:(}2.42{txt:)}}   {txt}
+
+{txt}_cons       {res}       -7.540***{txt}
+            {res} {ralign 12:{txt:(}-4.47{txt:)}}   {txt}
+{txt}{hline 28}
+{txt}F           {res}        26.39***{txt}
+{txt}rmse        {res}        0.286   {txt}
+{txt}rss         {res}        1.806   {txt}
+{txt}{hline 28}
+{txt}t statistics in parentheses
+{txt}* p<0.05, ** p<0.01, *** p<0.001
+
+{com}. esttab reg3 reg4 using "regressions2.tex", r2 ar2 se scalar(rmse) replace
+{res}{txt}(output written to {browse  `"regressions2.tex"'})
+
+{com}. 
+. esttab reg1 reg2 reg3 reg4 using "regressions3.tex", r2 ar2 se scalar(rmse) replace
+{res}{txt}(output written to {browse  `"regressions3.tex"'})
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/ff/znt1tmf14sq5426f5t99j_s00000gn/T//SD32815.000000"
+{txt}
+{com}. // Q2(c) theoretical, written in the document
+. //comparing goodness of fits for the two models
+. 
+. //Q2(d)
+. //addition of population of France as a regressor
+. regress lnprice age agst harvestrain winterrain francepop
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}        27
+{txt}{hline 13}{c +}{hline 34}   F(5, 21)        = {res}    20.19
+{txt}       Model {c |} {res} 8.66713398         5   1.7334268   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 1.80318107        21  .085865765   {txt}R-squared       ={res}    0.8278
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.7868
+{txt}       Total {c |} {res} 10.4703151        26  .402704425   {txt}Root MSE        =   {res} .29303
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     lnprice{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0137693{col 26}{space 2} .0582139{col 37}{space 1}    0.24{col 46}{space 3}0.815{col 54}{space 4}-.1072931{col 67}{space 3} .1348317
+{txt}{space 8}agst {c |}{col 14}{res}{space 2} .6144243{col 26}{space 2} .0979944{col 37}{space 1}    6.27{col 46}{space 3}0.000{col 54}{space 4} .4106338{col 67}{space 3} .8182148
+{txt}{space 1}harvestrain {c |}{col 14}{res}{space 2}-.0038373{col 26}{space 2} .0008366{col 37}{space 1}   -4.59{col 46}{space 3}0.000{col 54}{space 4}-.0055772{col 67}{space 3}-.0020974
+{txt}{space 2}winterrain {c |}{col 14}{res}{space 2} .0011532{col 26}{space 2} .0004991{col 37}{space 1}    2.31{col 46}{space 3}0.031{col 54}{space 4} .0001154{col 67}{space 3} .0021911
+{txt}{space 3}francepop {c |}{col 14}{res}{space 2}-.0000221{col 26}{space 2} .0001268{col 37}{space 1}   -0.17{col 46}{space 3}0.863{col 54}{space 4}-.0002859{col 67}{space 3} .0002416
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-2.342592{col 26}{space 2}  7.69654{col 37}{space 1}   -0.30{col 46}{space 3}0.764{col 54}{space 4}-18.34842{col 67}{space 3} 13.66324
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. eststo reg5
+{txt}
+{com}. esttab reg5, stats(F rmse rss, star(F))
+{res}
+{txt}{hline 28}
+{txt}                      (1)   
+{txt}                  lnprice   
+{txt}{hline 28}
+{txt}age         {res}       0.0138   {txt}
+            {res} {ralign 12:{txt:(}0.24{txt:)}}   {txt}
+
+{txt}agst        {res}        0.614***{txt}
+            {res} {ralign 12:{txt:(}6.27{txt:)}}   {txt}
+
+{txt}harvestrain {res}     -0.00384***{txt}
+            {res} {ralign 12:{txt:(}-4.59{txt:)}}   {txt}
+
+{txt}winterrain  {res}      0.00115*  {txt}
+            {res} {ralign 12:{txt:(}2.31{txt:)}}   {txt}
+
+{txt}francepop   {res}   -0.0000221   {txt}
+            {res} {ralign 12:{txt:(}-0.17{txt:)}}   {txt}
+
+{txt}_cons       {res}       -2.343   {txt}
+            {res} {ralign 12:{txt:(}-0.30{txt:)}}   {txt}
+{txt}{hline 28}
+{txt}F           {res}        20.19***{txt}
+{txt}rmse        {res}        0.293   {txt}
+{txt}rss         {res}        1.803   {txt}
+{txt}{hline 28}
+{txt}t statistics in parentheses
+{txt}* p<0.05, ** p<0.01, *** p<0.001
+
+{com}. esttab reg2 reg5 using "regressions4.tex", r2 ar2 se scalar(rmse) replace
+{res}{txt}(output written to {browse  `"regressions4.tex"'})
+
+{com}. 
+. //Q2(e)
+. //price instead of lnprice
+. regress price age agst harvestrain winterrain
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}        27
+{txt}{hline 13}{c +}{hline 34}   F(4, 22)        = {res}    15.34
+{txt}       Model {c |} {res} 20196045.3         4  5049011.33   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 7238993.44        22  329045.156   {txt}R-squared       ={res}    0.7361
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.6882
+{txt}       Total {c |} {res} 27435038.7        26   1055193.8   {txt}Root MSE        =   {res} 573.62
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       price{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} 39.21263{col 26}{space 2} 14.34898{col 37}{space 1}    2.73{col 46}{space 3}0.012{col 54}{space 4} 9.454659{col 67}{space 3} 68.97059
+{txt}{space 8}agst {c |}{col 14}{res}{space 2} 930.7869{col 26}{space 2} 190.5575{col 37}{space 1}    4.88{col 46}{space 3}0.000{col 54}{space 4} 535.5949{col 67}{space 3} 1325.979
+{txt}{space 1}harvestrain {c |}{col 14}{res}{space 2}-5.046939{col 26}{space 2} 1.616821{col 37}{space 1}   -3.12{col 46}{space 3}0.005{col 54}{space 4}-8.400021{col 67}{space 3}-1.693857
+{txt}{space 2}winterrain {c |}{col 14}{res}{space 2}  2.75098{col 26}{space 2} .9651191{col 37}{space 1}    2.85{col 46}{space 3}0.009{col 54}{space 4} .7494455{col 67}{space 3} 4.752515
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-15509.01{col 26}{space 2} 3379.867{col 37}{space 1}   -4.59{col 46}{space 3}0.000{col 54}{space 4}-22518.43{col 67}{space 3}-8499.596
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. eststo reg6
+{txt}
+{com}. esttab reg6, stats(F rmse rss, star(F))
+{res}
+{txt}{hline 28}
+{txt}                      (1)   
+{txt}                    price   
+{txt}{hline 28}
+{txt}age         {res}        39.21*  {txt}
+            {res} {ralign 12:{txt:(}2.73{txt:)}}   {txt}
+
+{txt}agst        {res}        930.8***{txt}
+            {res} {ralign 12:{txt:(}4.88{txt:)}}   {txt}
+
+{txt}harvestrain {res}       -5.047** {txt}
+            {res} {ralign 12:{txt:(}-3.12{txt:)}}   {txt}
+
+{txt}winterrain  {res}        2.751** {txt}
+            {res} {ralign 12:{txt:(}2.85{txt:)}}   {txt}
+
+{txt}_cons       {res}     -15509.0***{txt}
+            {res} {ralign 12:{txt:(}-4.59{txt:)}}   {txt}
+{txt}{hline 28}
+{txt}F           {res}        15.34***{txt}
+{txt}rmse        {res}        573.6   {txt}
+{txt}rss         {res}    7238993.4   {txt}
+{txt}{hline 28}
+{txt}t statistics in parentheses
+{txt}* p<0.05, ** p<0.01, *** p<0.001
+
+{com}. esttab reg2 reg6 using "regressions5.tex", r2 ar2 se scalar(rmse) replace
+{res}{txt}(output written to {browse  `"regressions5.tex"'})
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/ff/znt1tmf14sq5426f5t99j_s00000gn/T//SD32815.000000"
+{txt}
+{com}. log off
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/saeehatwalne/Desktop/APU 2023-25/Econometrics_STATA/assignment2/metrics_assign2_Saee_Hatwalne.smcl
+  {txt}log type:  {res}smcl
+ {txt}paused on:  {res}19 Feb 2024, 21:28:01
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
