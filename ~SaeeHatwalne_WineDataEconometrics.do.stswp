@@ -1,16 +1,18 @@
 //Saee Hatwalne
 //Econometrics Assignment 2
 //February 2024
+********************************************************************************
 clear all
-global pathin = "/Users/saeehatwalne/Desktop/APU 2023-25/Econometrics_STATA/assignment2"
-global pathout =  "/Users/saeehatwalne/Desktop/APU 2023-25/Econometrics_STATA/assignment2"
-log using "$pathout/metrics_assign2_Saee_Hatwalne.smcl"
+global pathin = "/Users/saeehatwalne/Desktop/APU 2023-25/Econometrics_STATA/WineData"
+global pathout =  "/Users/saeehatwalne/Desktop/APU 2023-25/Econometrics_STATA/WineData"
+log using "$pathout/SaeeHatwalne_WineDataEconometrics.smcl"
 log on
+********************************************************************************
 import delimited "wine.csv"
 br
 
-//Q1. Suppose we wish to predict the natural log of the price of wine. Which regressors predict this variable best?
-//(a) Explore graphically
+//For predicting the natural log of the price of wine. Which regressors predict this variable best:
+//Exploring graphically
 
 *just to summarize the basic descriptive statistics of all variables
 summarize year price lnprice winterrain harvestrain agst age francepop, detail
@@ -40,7 +42,7 @@ graph save combined_hist , replace
 graph export combined_hist.png, replace
 
 
-// Q1 (b) Explore correlations. [10]
+//Exploring correlations
 
 *making a correlation matrix: price taken as 'price' not 'lnprice'
 correlate price age winterrain harvestrain agst francepop
@@ -71,7 +73,7 @@ graph export combinedscatter.png, replace
 
 
 
-// Q1 (c) Explore simple regressions. [10]
+//Exploring simple regressions
 *lnprice on age only
 regress lnprice age
 eststo reg01
@@ -111,10 +113,8 @@ esttab reg05, stats(F rmse rss, star(F))
 esttab reg01 reg02 reg03 reg04 reg05 using "regressions_first.tex", r2 ar2 se scalar(rmse) replace
 
 
-
-
-// Q1 (d) Ashenfelter claims that weather is the key determinant of wine prices. 
-//Replicate Figures 1 and 2 from the paper and explain his arguments. [10]
+//Ashenfelter claims that weather is the key determinant of wine prices. 
+//Replicating Figures 1 and 2 from the paper and explain his arguments.
 
 *Figure 1
 generate rel_price = .
@@ -155,7 +155,7 @@ graph export scatterfig2.png, replace
 	
 *-------------------------------------------------------------------------------
 
-//Q2. Regressions
+//Regressions
 //regression for column1
 regress lnprice age
 eststo reg1
@@ -178,10 +178,10 @@ regress lnprice resid1 //regressing this part on dependent variable
 *this should give the same coefficient as simple regression lnprice on age
 *approximately, same coefficient is obtained
 
-//Q2(a) combining the two columns to disaply the regressions
+//Combining the two columns to disaply the regressions
 esttab reg1 reg2 using "regressions.tex", r2 ar2 se scalar(rmse) replace
 
-//Q2(b) goodness of fit and lnprice relative to 1961 as dependent variable
+//Goodness of fit and lnprice relative to 1961 as dependent variable
 //goodness of fit of initial two models discussed in the answersheet, and above
 //now for lnprice relative to 1961 as dependent variable - regressions are:
 regress ln_rel_price age
@@ -196,20 +196,17 @@ esttab reg3 reg4 using "regressions2.tex", r2 ar2 se scalar(rmse) replace
 esttab reg1 reg2 reg3 reg4 using "regressions3.tex", r2 ar2 se scalar(rmse) replace
 
 
-// Q2(c) theoretical, written in the document
-//comparing goodness of fits for the two models
-
-//Q2(d)
 //addition of population of France as a regressor
 regress lnprice age agst harvestrain winterrain francepop
 eststo reg5
 esttab reg5, stats(F rmse rss, star(F))
 esttab reg2 reg5 using "regressions4.tex", r2 ar2 se scalar(rmse) replace
 
-//Q2(e)
+
 //price instead of lnprice
 regress price age agst harvestrain winterrain
 eststo reg6
 esttab reg6, stats(F rmse rss, star(F))
 esttab reg2 reg6 using "regressions5.tex", r2 ar2 se scalar(rmse) replace
+
 log off
